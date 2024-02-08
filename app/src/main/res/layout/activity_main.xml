@@ -14,9 +14,10 @@
         android:layout_marginEnd="202dp"
         android:layout_marginBottom="33dp"
         android:max="100"
+        android:progress="0"
         android:scaleX="2"
         android:scaleY="2"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintBottom_toTopOf="@+id/celsiusReading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -28,9 +29,10 @@
         android:layout_marginEnd="202dp"
         android:layout_marginBottom="50dp"
         android:max="212"
+        android:progress="32"
         android:scaleX="2"
         android:scaleY="2"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/fahrenheitReading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -65,26 +67,26 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/celsiusReading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
         android:layout_marginEnd="127dp"
         android:layout_marginBottom="82dp"
-        android:text="Celsius Reading"
+        android:text="0"
         android:textSize="28dp"
         app:layout_constraintBottom_toTopOf="@+id/fahrenheitLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/fahrenheitReading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
         android:layout_marginEnd="85dp"
         android:layout_marginBottom="223dp"
-        android:text="Fahrenheit Reading"
+        android:text="32"
         android:textSize="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
