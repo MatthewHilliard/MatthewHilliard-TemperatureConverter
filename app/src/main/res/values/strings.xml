@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MatthewHilliard-TemperatureConverter</string>
+    <string name="warmer_text">I wish it were warmer.</string>
+    <string name="colder_text">I wish it were colder.</string>
 </resources>
