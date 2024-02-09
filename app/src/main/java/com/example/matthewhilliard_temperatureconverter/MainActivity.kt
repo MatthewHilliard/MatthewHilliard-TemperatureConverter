@@ -10,6 +10,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var updatingCelsius = true
+        var updatingFahrenheit = true
+
         val celsiusSeekbar = findViewById<SeekBar>(R.id.celsiusSeekBar)
         val fahrenheitSeekbar = findViewById<SeekBar>(R.id.fahrenheitSeekBar)
 
@@ -19,14 +22,18 @@ class MainActivity : AppCompatActivity() {
 
         celsiusSeekbar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                celsiusReading.text = progress.toString()
-                if(progress <= 20){
-                    secretMessage.text = getString(R.string.warmer_text)
-                }
-                else {
-                    secretMessage.text = getString(R.string.colder_text)
-                }
+                if (updatingCelsius) {
+                    updatingFahrenheit = false
+                    celsiusReading.text = progress.toString()
+                    if(progress <= 20){
+                        secretMessage.text = getString(R.string.warmer_text)
+                    } else {
+                        secretMessage.text = getString(R.string.colder_text)
+                    }
                     fahrenheitSeekbar.progress = ((progress * (9.0 / 5.0)) + 32).toInt()
+                    fahrenheitReading.text = fahrenheitSeekbar.progress.toString()
+                    updatingFahrenheit = true
+                }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -40,8 +47,13 @@ class MainActivity : AppCompatActivity() {
 
         fahrenheitSeekbar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                fahrenheitReading.text = progress.toString()
-                celsiusSeekbar.progress = ((progress - 32) * 5.0 / 9.0).toInt()
+                if (updatingFahrenheit) {
+                    updatingCelsius = false
+                    fahrenheitReading.text = progress.toString()
+                    celsiusSeekbar.progress = ((progress - 32) * 5.0 / 9.0).toInt()
+                    celsiusReading.text = celsiusSeekbar.progress.toString()
+                    updatingCelsius = true
+                }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -49,7 +61,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
+                if(fahrenheitSeekbar.progress < 32){
+                    fahrenheitReading.text = "32"
+                    fahrenheitSeekbar.progress = 32
+                }
             }
         })
     }
