@@ -50,6 +50,11 @@ class MainActivity : AppCompatActivity() {
                 if (updatingFahrenheit) {
                     updatingCelsius = false
                     fahrenheitReading.text = progress.toString()
+                    if(progress <= 68){
+                        secretMessage.text = getString(R.string.warmer_text)
+                    } else {
+                        secretMessage.text = getString(R.string.colder_text)
+                    }
                     celsiusSeekbar.progress = ((progress - 32) * 5.0 / 9.0).toInt()
                     celsiusReading.text = celsiusSeekbar.progress.toString()
                     updatingCelsius = true
